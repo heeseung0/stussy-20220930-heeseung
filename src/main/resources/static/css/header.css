@@ -90,6 +90,14 @@ nav {
 
 }
 
+.header-search-button {
+    background-color: transparent;
+}
+
+.header-bag-button {
+    background-color: transparent;
+}
+
 .header-search-button:hover {
     opacity: 0.5;
 }
