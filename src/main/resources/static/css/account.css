@@ -37,6 +37,10 @@ section {
     margin-bottom: 15px;
 }
 
+.account-input-error {
+    background-color: #c0392b;
+}
+
 .find-password-link {
     display: flex;
     justify-content: flex-end;
