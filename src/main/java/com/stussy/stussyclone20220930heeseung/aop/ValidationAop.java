@@ -38,7 +38,6 @@ public class ValidationAop {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
 
             for (FieldError fieldError : fieldErrors) {
-//                if(fieldError.getField().equals("password"))  //비밀번호 테스트용
                 errorMap.put(fieldError.getField(),fieldError.getDefaultMessage());
             }
 
