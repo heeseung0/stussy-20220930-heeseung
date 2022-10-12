@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.BindingResult;
 
 @Slf4j
 @Aspect
@@ -20,7 +21,6 @@ public class LogAop {
 
     @Pointcut("@annotation(com.stussy.stussyclone20220930heeseung.aop.annotation.LogAspect))")
     private void annotationPointCut() {
-
     }
 
     @Around("annotationPointCut()")
