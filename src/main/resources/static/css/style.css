@@ -7,7 +7,7 @@
 
 body {
     margin: 0;
-    background-color: beige;
+    background-color: white;
 }
 
 a {
@@ -44,4 +44,8 @@ ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+main {
+    margin-top: 60px;
 }
