@@ -6,10 +6,7 @@ import com.stussy.stussyclone20220930heeseung.dto.CMRespDto;
 import com.stussy.stussyclone20220930heeseung.dto.admin.ProductRegisterReqDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +19,12 @@ public class ProductAdminApi {
     @PostMapping("/product")
     public ResponseEntity<?> registerProductMst(@Valid @RequestBody ProductRegisterReqDto productRegisterReqDto,
                                                 BindingResult bindingResult) {
+
         return ResponseEntity.created(null).body(new CMRespDto<>("Register Successfully", null));
+    }
+
+     @GetMapping("/product/category")
+    public ResponseEntity<?> getCategoryList(){
+        return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully",null));
     }
 }

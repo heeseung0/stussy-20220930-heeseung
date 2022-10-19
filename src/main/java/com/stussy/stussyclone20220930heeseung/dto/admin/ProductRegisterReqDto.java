@@ -6,7 +6,8 @@ import lombok.Data;
 public class ProductRegisterReqDto {
     private String category;
     private String name;
-    private String price;
+
+    private int price;
     private String simpleInfo;
     private String detailInfo;
     private String optionInfo;
