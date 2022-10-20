@@ -188,7 +188,10 @@ class RegisterEventService {
             console.log(productMst);
             
             const registerAPI = new RegisterApi();
-            registerAPI.createProductRequest(productMst.getObject());
+            if(registerAPI.createProductRequest(productMst.getObject())){
+                alert("상품 등록 완료");
+                location.reload();
+            }
         }
     }
 }
