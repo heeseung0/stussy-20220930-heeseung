@@ -59,6 +59,27 @@ class ProductMst {
     }
 }
 
+class CommonApi {
+    getCategoryList() {
+        let responseResult = null;
+
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "/api/admin/product/category",
+            dataType: "json",
+            success: (response) => {
+                responseResult = response.data;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+
+        return responseResult;
+    }
+}
+
 class RegisterApi {
     createProductRequest(productMst) {
         let responseResult = null;
@@ -190,11 +211,27 @@ class RegisterService {
 
     }
 
+    getCategoryList() {
+        const commonApi = new CommonApi();
+        const productCategoryList = commonApi.getCategoryList();
+
+        const productCategory = document.querySelector(".product-category");
+        productCategory.innerHTML = `<option value="none">상품 종류</option>`;
+
+        productCategoryList.forEach(category => {
+            productCategory.innerHTML += `
+                <option value="${category.id}">${category.name}</option>
+            `;
+        }) 
+
+    }
+
     setRegisterHeaderEvent() {
         new RegisterEventService();
     }
 }
 
 window.onload = () => {
+    RegisterService.getInstance().getCategoryList();
     RegisterService.getInstance().setRegisterHeaderEvent();
 }
