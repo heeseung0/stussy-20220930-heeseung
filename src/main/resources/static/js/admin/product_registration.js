@@ -1,5 +1,4 @@
 class ProductMst {
-    //#을 붙이면 private이 된다.
     #category;
     #name;
     #price;
@@ -20,40 +19,40 @@ class ProductMst {
         this.#shippingInfo = shippingInfo;
     }
 
-    getCategory(){return this.#category;}
-    setCategory(category){this.#category=category;}
+    getCategory() {return this.#category;}
+    setCategory(category) {this.#category = category;}
 
-    getName(){return this.#name;}
-    setName(name){this.#name=name;}
+    getName() {return this.#name;}
+    setName(name) {this.#name = name;}
 
-    getPrice(){return this.#price;}
-    setPrice(price){this.#price=price;}
+    getPrice() {return this.#price;}
+    setPrice(price) {this.#price = price;}
 
-    getSimpleInfo(){return this.#simpleInfo;}
-    setSimpleInfo(simpleInfo){this.#simpleInfo=simpleInfo;}
+    getSimpleInfo() {return this.#simpleInfo;}
+    setSimpleInfo(simpleInfo) {this.#simpleInfo = simpleInfo;}
 
-    getDetailInfo(){return this.#detailInfo;}
-    setDetailInfo(detailInfo){this.#detailInfo=detailInfo;}
+    getDetailInfo() {return this.#detailInfo;}
+    setDetailInfo(detailInfo) {this.#detailInfo = detailInfo;}
 
-    getOptionInfo(){return this.#optionInfo;}
-    setOptionInfo(optionInfo){this.#optionInfo=optionInfo;}
+    getOptionInfo() {return this.#optionInfo;}
+    setOptionInfo(optionInfo) {this.#optionInfo = optionInfo;}
 
-    getManagementInfo(){return this.#managementInfo;}
-    setManagementInfo(managementInfo){this.#managementInfo=managementInfo;}
+    getManagementInfo() {return this.#managementInfo;}
+    setManagementInfo(managementInfo) {this.#managementInfo = managementInfo;}
 
-    getShippingInfo(){return this.#shippingInfo;}
-    setShippingInfo(shippingInfo){this.#shippingInfo=shippingInfo;}
+    getShippingInfo() {return this.#shippingInfo;}
+    setShippingInfo(shippingInfo) {this.#shippingInfo = shippingInfo;}
 
     getObject() {
         const obj = {
-            category : this.#category,
-            name : this.#name,
-            price : this.#price,
-            simpleInfo : this.#simpleInfo,
-            detailInfo : this.#detailInfo,
-            optionInfo : this.#optionInfo,
-            managementInfo : this.#managementInfo,
-            shippingInfo : this.#shippingInfo,
+            category: this.#category,
+            name: this.#name,
+            price: this.#price,
+            simpleInfo: this.#simpleInfo,
+            detailInfo: this.#detailInfo,
+            optionInfo: this.#optionInfo,
+            managementInfo: this.#managementInfo,
+            shippingInfo: this.#shippingInfo
         }
         return obj;
     }
@@ -83,7 +82,7 @@ class CommonApi {
 class ProductApi {
     createProductRequest(productMst) {
         let responseData = null;
-        
+
         $.ajax({
             async: false,
             type: "post",
@@ -98,7 +97,7 @@ class ProductApi {
                 console.log(error);
             }
         });
-        
+
         return responseData;
     }
 
@@ -124,23 +123,21 @@ class ProductApi {
 }
 
 class RegisterEventService {
-    #RegisterService;
-    
     #categorySelectObj;
     #nameInputObj;
     #priceInputObj;
     #registButtonObj;
     #infoTextareaObjs;
-    
+
     constructor() {
         this.#categorySelectObj = document.querySelectorAll(".product-inputs")[0];
         this.#nameInputObj = document.querySelectorAll(".product-inputs")[1];
         this.#priceInputObj = document.querySelectorAll(".product-inputs")[2];
         this.#registButtonObj = document.querySelector(".regist-button");
         this.#infoTextareaObjs = document.querySelectorAll(".product-inputs");
-        
+
         this.init();
-        
+
         this.addCategorySelectEvent();
         this.addNameInputEvent();
         this.addPriceInputEvent();
@@ -152,46 +149,43 @@ class RegisterEventService {
         this.#priceInputObj.disabled = true;
         this.#registButtonObj.disabled = true;
     }
-    
+
     addCategorySelectEvent() {
         this.#categorySelectObj.onchange = () => {
-            if(this.#categorySelectObj.value != "none"){
-                this.#nameInputObj.disabled = false;  
-                
-                if(this.#nameInputObj.value != ""){
-                    this.#priceInputObj.disabled = false;
-                }
-            }else{
+            if(this.#categorySelectObj.value != "none") {
+                this.#nameInputObj.disabled = false;
+            }else {
                 this.#nameInputObj.disabled = true;
-                this.#priceInputObj.disabled = true;
             }
         }
     }
-    
+
     addNameInputEvent() {
         this.#nameInputObj.onkeyup = () => {
-            if(this.#nameInputObj.value.length != 0){
+            if(this.#nameInputObj.value.length != 0) {
                 this.#priceInputObj.disabled = false;
-            }else{
+            }else {
                 this.#priceInputObj.disabled = true;
             }
         }
     }
-    
-    addPriceInputEvent() {
-        this.#priceInputObj.oninput = () => {
-            const registerInfo = document.querySelector(".regist-info");
 
-            if(this.#priceInputObj.value.length != 0){
+    addPriceInputEvent() {
+        this.#priceInputObj.onkeyup = () => {
+            const registInfo = document.querySelector(".regist-info");
+
+            if(this.#priceInputObj.value.length != 0) {
                 this.#registButtonObj.disabled = false;
-                registerInfo.classList.remove("regist-info-invisible");
-            }else{
-                this.#registButtonObj.disabled = true;  
-                registerInfo.classList.add("regist-info-invisible");
+                registInfo.classList.remove("regist-info-invisible");
+
+            }else {
+                this.#registButtonObj.disabled = true;
+                registInfo.classList.add("regist-info-invisible");
+
             }
         }
     }
-    
+
     addRegistButtonEvent() {
         this.#registButtonObj.onclick = () => {
             const category = this.#categorySelectObj.value;
@@ -202,13 +196,13 @@ class RegisterEventService {
             const optionInfo = this.#infoTextareaObjs[5].value;
             const managementInfo = this.#infoTextareaObjs[6].value;
             const shippingInfo = this.#infoTextareaObjs[7].value;
-            
-            const productMst = new ProductMst(category, name, price, simpleInfo, detailInfo, optionInfo, managementInfo, shippingInfo);
-            
-            console.log(productMst);
-            
-            const productApi = new ProductApi();
-            if(productApi.createProductRequest(productMst.getObject())){
+
+            const productMst = new ProductMst(
+                category, name, price, simpleInfo, detailInfo,
+                optionInfo, managementInfo, shippingInfo);
+
+            const pegisterApi = new ProductApi();
+            if(pegisterApi.createProductRequest(productMst.getObject())) {
                 alert("상품 등록 완료");
                 location.reload();
             }
@@ -220,11 +214,10 @@ class RegisterService {
     static #instance = null;
 
     constructor() {
-        
     }
 
-    static getInstance(){
-        if(this.#instance == null){
+    static getInstance() {
+        if(this.#instance == null) {
             this.#instance = new RegisterService();
         }
         return this.#instance;
@@ -239,13 +232,13 @@ class RegisterService {
         const productCategoryList = commonApi.getCategoryList();
 
         const productCategory = document.querySelector(".product-category");
-        productCategory.innerHTML = `<option value="none">상품 종류</option>`;
+        productCategory.innerHTML = `<option value="none">상품 종류</option><option value="1">test</option>`;
 
         productCategoryList.forEach(category => {
             productCategory.innerHTML += `
-                <option value="${category.id}">${category.name}</option>
+            <option value="${category.id}">${category.name}</option>
             `;
-        }) 
+        })
 
     }
 
@@ -258,7 +251,7 @@ class ListService {
     static #instance = null;
 
     getInstance() {
-        if(this.#instance == null){
+        if(this.#instance == null) {
             this.#instance = new ListService();
         }
         return this.#instance;

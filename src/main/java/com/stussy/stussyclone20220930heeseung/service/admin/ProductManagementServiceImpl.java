@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductManagementServiceImp implements ProductManagementService{
+public class ProductManagementServiceImpl implements ProductManagementService {
 
     private final ProductManagementRepository productManagementRepository;
 
@@ -26,9 +26,10 @@ public class ProductManagementServiceImp implements ProductManagementService{
     }
 
     @Override
-    public void registerMst(ProductRegisterReqDto productRegisterReqDto) throws Exception {
-        if(productManagementRepository.saveProductMst(productRegisterReqDto.toEntity()) == 0){
+    public void registerMst(ProductRegisterReqDto productRegisterReqDto) throws Exception{
+        if(productManagementRepository.saveProductMst(productRegisterReqDto.toEntity()) == 0) {
             throw new CustomInternalServerErrorException("상품 등록 실패");
         }
     }
+
 }

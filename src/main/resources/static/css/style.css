@@ -2,12 +2,10 @@
     box-sizing: border-box;
 
     font-size: 11px;
-
 }
 
 body {
     margin: 0;
-    background-color: white;
 }
 
 a {
@@ -16,8 +14,8 @@ a {
 }
 
 button {
-    border: 0;
-    background-color: none;
+    border: none;
+    background: none;
 
     cursor: pointer;
 }
@@ -25,11 +23,10 @@ button {
 .btn {
     border: 1px solid black;
     padding: 10px;
-
 }
 
 input, textarea, select {
-    border: 1px solid rgb(198,198,198);
+    border: 1px solid rgb(198, 198, 198);
     outline: none;
     padding: 10px;
 
@@ -52,11 +49,11 @@ main {
 
 table {
     border-collapse: collapse;
-    border: 1px solid rgb(198,198,198);
+    border: 1px solid rgb(198, 198, 198);
 }
 
 th, td {
-    border: 1px solid rgb(198,198,198);
+    border: 1px solid rgb(198, 198, 198);
 
     height: 30px;
 
