@@ -146,12 +146,12 @@ class CollectionsService {
                     <div class="product-img">
                         <img src="/static/images/product/1924840_PUTT_1_720x.png">
                     </div>
-                        <div class="product-name">
-                            ${product.productName}
-                        </div>
-                        <div class="product-price">
-                            ${product.productPrice}원
-                        </div>
+                    <div class="product-name">
+                        ${product.productName}
+                    </div>
+                    <div class="product-price">
+                        ${product.productPrice}원
+                   </div>
                 </li>
             `;
         });
