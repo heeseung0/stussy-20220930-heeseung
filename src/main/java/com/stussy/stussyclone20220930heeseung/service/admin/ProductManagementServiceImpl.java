@@ -1,5 +1,6 @@
 package com.stussy.stussyclone20220930heeseung.service.admin;
 
+import com.stussy.stussyclone20220930heeseung.domain.ProductDetail;
 import com.stussy.stussyclone20220930heeseung.dto.admin.*;
 import com.stussy.stussyclone20220930heeseung.exception.CustomInternalServerErrorException;
 import com.stussy.stussyclone20220930heeseung.exception.CustomValidationException;
@@ -68,6 +69,13 @@ public class ProductManagementServiceImpl implements ProductManagementService {
     public void registerDtl(ProductRegisterDtlReqDto productRegisterDtlReqDto) throws Exception {
         if(productManagementRepository.saveProductDtl(productRegisterDtlReqDto.toEntity()) == 0){
             throw new CustomInternalServerErrorException("상품 등록 오류");
+        }else{
+            ProductDetail entity = productRegisterDtlReqDto.toEntity();
+            if(entity.getId() == 0 || entity.getSize_id() == 0 || entity.getPdt_color().equals("") || entity.getPdt_stock() == 0){
+                Map<String, String> errorMap = new HashMap<String, String>();
+                errorMap.put("error","상품 정보가 잘못되었습니다.");
+                throw new CustomValidationException("Input Error", errorMap);
+            }
         }
     }
 }
