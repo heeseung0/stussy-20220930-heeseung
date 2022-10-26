@@ -47,4 +47,8 @@ public class ProductAdminApi {
     public ResponseEntity<?> getProductMstList() throws Exception {
         return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully",productManagementService.getProductMstList()));
     }
+    @GetMapping("/option/products/size/{productId}")
+    public ResponseEntity<?> getProductSizeList(@PathVariable int productId) throws Exception {
+        return ResponseEntity.ok().body(new CMRespDto<>("Get Successfully",productManagementService.getSizeList(productId)));
+    }
 }
