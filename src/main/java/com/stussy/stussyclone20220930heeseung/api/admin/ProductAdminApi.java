@@ -67,6 +67,7 @@ public class ProductAdminApi {
     public ResponseEntity<?> registerImg(ProductImgReqDto productImgReqDto) throws Exception {
         productManagementService.registerImg(productImgReqDto);
 
+
         return ResponseEntity.created(null).body(new CMRespDto<>("Register Successfully", true));
     }
 }

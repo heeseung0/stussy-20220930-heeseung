@@ -1,6 +1,7 @@
 package com.stussy.stussyclone20220930heeseung.service.admin;
 
 import com.stussy.stussyclone20220930heeseung.domain.ProductDetail;
+import com.stussy.stussyclone20220930heeseung.domain.ProductImg;
 import com.stussy.stussyclone20220930heeseung.dto.admin.*;
 import com.stussy.stussyclone20220930heeseung.exception.CustomInternalServerErrorException;
 import com.stussy.stussyclone20220930heeseung.exception.CustomValidationException;
@@ -97,6 +98,8 @@ public class ProductManagementServiceImpl implements ProductManagementService {
             throw new CustomValidationException("Img Error", errorMap);
         }
 
+        List<ProductImg> productImgs = new ArrayList<ProductImg>();
+
         productImgReqDto.getFiles().forEach(file -> {
 //            log.info("fileName >>> " + file.getOriginalFilename());
             String originName = file.getOriginalFilename();
@@ -115,6 +118,14 @@ public class ProductManagementServiceImpl implements ProductManagementService {
             } catch (IOException e) {
                 throw new CustomInternalServerErrorException(e.getMessage());
             }
+
+            productImgs.add(ProductImg.builder()
+                            .pdt_id(productImgReqDto.getPdtId())
+                            .origin_name(originName)
+                            .save_name(saveName)
+                            .build());
         });
+
+        productManagementRepository.saveProductImg(productImgs);
     }
 }
