@@ -81,4 +81,5 @@
             0, #{pdt_id}, #{size_id}, #{pdt_color}, #{pdt_stock}, now(), now()
         )
     </insert>
+
 </mapper>
