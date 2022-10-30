@@ -36,4 +36,6 @@ public class AccountServiceImpl implements AccountService {
             throw new CustomInternalServerErrorException("회원가입 중 문제가 발생하였습니다.");
         }
     }
+
+
 }
