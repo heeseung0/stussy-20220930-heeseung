@@ -36,9 +36,15 @@ class CollectionsApi {
 }
 
 class PageScroll {
-    constructor() {
-        this.addScrollPagingEvent();
+    static #instance = null;
+
+    static getInstance() {
+        if(this.#instance == null){
+            this.#instance = new PageScroll();
+        }
+        return this.#instance;
     }
+
     addScrollPagingEvent() {
         const html = document.querySelector("html");
         const body = document.querySelector("body");
@@ -68,16 +74,22 @@ class CollectionsService {
         return this.#instance;
     }
 
+    pdtIdList = null;
+
     collectionsEntity = {
         page: 1,
         totalCount: 0,
         maxPage: 0
     }
 
+    constructor(){
+       this.pdtIdList = new Array();
+    }
+
     loadCollections() {
         if(this.collectionsEntity.page == 1 || this.collectionsEntity.page < Number(this.collectionsEntity.maxPage) + 1){
             const responseData = CollectionsApi.getInstance().getCollections(this.collectionsEntity.page);
-    //        console.log(responseData);
+            console.log(responseData);
 
             if(responseData.length > 0){
                 this.collectionsEntity.totalCount = responseData[0].productTotalCount;
@@ -96,6 +108,7 @@ class CollectionsService {
         const collectionProducts = document.querySelector(".collection-products");
 
         responseData.forEach(product => {
+            this.pdtIdList.push(product.productId);
             collectionProducts.innerHTML += `
                 <li class="collection-product">
                     <div class="product-img">
@@ -110,10 +123,23 @@ class CollectionsService {
                 </li>
             `;
         });
+
+        this.addProductListEvent();
+    }
+
+    addProductListEvent() {
+        const collectionProducts = document.querySelectorAll(".collection-product");
+
+        collectionProducts.forEach((product, index) => {
+            product.onclick = () => {
+                console.log(this.pdtIdList[index]);
+                location.href = "/product/" + this.pdtIdList[index];
+            }
+        });
     }
 }
 
 window.onload = () => {
     CollectionsService.getInstance().loadCollections();
-    new PageScroll();
+    PageScroll.getInstance().addScrollPagingEvent();
 }
