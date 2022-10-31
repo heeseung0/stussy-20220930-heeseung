@@ -19,6 +19,7 @@ class ProductApi {
             dataType: "json",
             success: response => {
                 responseData = response.data;
+                console.log(response);
             },
             error: error => {
                 console.log(error);
@@ -46,7 +47,7 @@ class ProductDetail {
             responseData.pdtImgs.forEach(img => {
                 productImages.innerHTML += `
                     <div class="product-image">
-                        <img src="/static/upload/product/${img}.png">
+                        <img src="/static/upload/product/${img}">
                     </div>
                 `;
             });

@@ -106,7 +106,6 @@ public class ProductManagementServiceImpl implements ProductManagementService {
 //            log.info("fileName >>> " + file.getOriginalFilename());
             Resource resource = resourceLoader.getResource("classpath:static/upload/product");
             String filePath = null;
-
             try{
                 if(!resource.exists()) {
                     String tempPath = resourceLoader.getResource("classpath:static").getURI().toString();

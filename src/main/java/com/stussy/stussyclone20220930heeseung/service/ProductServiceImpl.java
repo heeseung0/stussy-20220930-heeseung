@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
 
         if(product == null){
             Map<String, String> errormap = new HashMap<String, String>();
-            errormap.put("error", "등롤되지 않은 상품입니다.");
+            errormap.put("error", "등록되지 않은 상품입니다.");
             throw new CustomValidationException("Get Product Error", errormap);
         }
 
@@ -77,6 +77,7 @@ public class ProductServiceImpl implements ProductService {
                 .pdtManagementInfo(product.getPdt_management_info())
                 .pdtShippingInfo(product.getPdt_shipping_info())
                 .pdtColors(pdtColors)
+                .pdtImgs(pdtImgs)
                 .build();
         return dto;
     }
