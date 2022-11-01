@@ -30,10 +30,10 @@
                     <h2 class="info-title">연락처 정보</h2>
                     <div class="info-detail">
                         <div class="profile-img">
-                            <img th:src="|/static/upload/product/${data.saveName}|>
+                            <img src="/static/images/header/profile.png">
                         </div>
                         <div class="profile-detail">
-                            <div class="principal-user" th:text="|${user.name}(${user.email})|"></div>
+                            <div class="principal-user" th:text="|${user.name} (${user.email})|"></div>
                             <a href="/logout">로그아웃</a>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <select>
                         <option valuie="ko">대한민국</option>
                     </select>
-                    <input type="text" class="principal-name" placeholder="성명">
+                    <input type="text" class="principal-name" th:value="${user.name}" placeholder="성명">
                     <div class="address-items">
                         <input type="text" class="address-zonecode" placeholder="우편번호" disabled>
                         <button type="button" class="btn address-button">주소찾기</button>

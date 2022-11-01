@@ -22,19 +22,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.httpBasic().disable();
         http.authorizeRequests()
-                .antMatchers("/account/mypage","/index", "checkout")
+                .antMatchers("/account/mypage", "/index", "/checkout")
                 .authenticated()
 //                .antMatchers("/admin/**")
 //                .hasRole("ADMIN")
-                .antMatchers("/admin/**","/api/admin/**")
+                .antMatchers("/admin/**", "/api/admin/**")
                 .permitAll()
                 .anyRequest()
                 .permitAll()
                 .and()
                 .formLogin()
                 .usernameParameter("email")
-                .loginPage("/account/login")            // login page (Get 요청)
-                .loginProcessingUrl("/account/login")   //  login service (Post요청)
+                .loginPage("/account/login")            // login page Get요청
+                .loginProcessingUrl("/account/login")   // login service Post요청
                 .failureHandler(new AuthFailureHandler())
                 .defaultSuccessUrl("/index");
     }
