@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class testcon {
 
-    @GetMapping("test1")
-    public String test(){
-        return "product/product_detail.html";
+    @GetMapping("tes1")
+    public String test1(){
+        return "product/product_detail";
+
+    }
+    @GetMapping("test2")
+    public String test2(){
+        return "product/product_order";
 
     }
 }
