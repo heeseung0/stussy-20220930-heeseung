@@ -1,12 +1,21 @@
 package com.stussy.stussyclone20220930heeseung.controller;
 
+import com.stussy.stussyclone20220930heeseung.dto.CheckoutRespDto;
+import com.stussy.stussyclone20220930heeseung.security.PrincipalDetails;
+import com.stussy.stussyclone20220930heeseung.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@RequiredArgsConstructor
 @Controller
 public class ProductController {
+
+    private final ProductService productService;
 
     @GetMapping("/collections/{category}")
     public String loadCollections(@PathVariable String category) {
@@ -20,7 +29,12 @@ public class ProductController {
     }
 
     @GetMapping("/checkout")
-    public String loadPayment(@RequestParam int pdtDtlId) {
+    public String loadPayment(Model model,
+                              @RequestParam int pdtDtlId,
+                              @AuthenticationPrincipal PrincipalDetails principalDetails) throws Exception {
+        CheckoutRespDto checkoutRespDto = productService.getCheckoutProduct(pdtDtlId);
+        model.addAttribute("data", checkoutRespDto);
+        model.addAttribute("user", principalDetails.getUser());
         return "product/product_order";
     }
 }

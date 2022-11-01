@@ -1,12 +1,15 @@
 package com.stussy.stussyclone20220930heeseung.security;
 
 import com.stussy.stussyclone20220930heeseung.domain.User;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+
+@Data
 public class PrincipalDetails implements UserDetails {
 
     private User user;

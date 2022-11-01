@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,10 +30,10 @@
                     <h2 class="info-title">연락처 정보</h2>
                     <div class="info-detail">
                         <div class="profile-img">
-                            <img src="/static/images/header/profile.png">
+                            <img th:src="|/static/upload/product/${data.saveName}|>
                         </div>
                         <div class="profile-detail">
-                            <div class="principal-user">윤희승 (ys2645@naver.com)</div>
+                            <div class="principal-user" th:text="|${user.name}(${user.email})|"></div>
                             <a href="/logout">로그아웃</a>
                         </div>
                     </div>
@@ -72,20 +72,20 @@
                 <li class="product-list">
                     <div class="product-info">
                         <div class="product-img">
-                            <img src="/static/images/product/1924840_PUTT_1_720x.png">
+                            <img th:src="|/static/upload/product/${data.saveName}|">
                         </div>
                         <div class="product-description">
-                            <h2>상품명</h2>
-                            <span>Black / S</span>
+                            <h2 th:text="${data.pdtName}"></h2>
+                            <span th:text="|${data.pdtColor} / ${data.sizeName}|"></span>
                         </div>
                     </div>
-                    <div class="product-price">\100000</div>
+                    <div class="product-price" th:text="|\${data.pdtPrice}|"></div>
                 </li>
             </ul>
             <div class="order-info">
                 <div class="order-price">
                     <h3>총 상품금액</h3>
-                    <span>\100000</span>
+                    <span th:text="|\${data.pdtPrice}|"></span>
                 </div>
                 <div class="order-shipping">
                     <h3>배송비</h3>
@@ -94,7 +94,7 @@
             </div>
             <div class="order-total">
                 <h2>총 결제금액</h2>
-                <strong>\100000</strong>
+                <strong th:text="|\${data.pdtPrice}|"></strong>
             </div>
         </aside>
     </div>
