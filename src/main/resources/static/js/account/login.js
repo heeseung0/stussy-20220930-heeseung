@@ -1,9 +1,7 @@
-const accountButtons = document.querySelectorAll(".account-button");
+const accountButton = document.querySelector(".account-button");
 
-for(let accountButton of accountButtons){
-    accountButton.onclick = () => {
-        if(accountButton.textContent == "신규가입"){
-            location.href="/account/register";
-        }
+accountButton.onclick = () => {
+    if(accountButton.textContent == "신규가입"){
+        location.href="/account/register";
     }
 }
